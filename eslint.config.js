@@ -60,7 +60,13 @@ export default defineConfig([
       'arrow-body-style': ['error', 'as-needed'],
       'no-unused-vars': [
         'warn',
-        { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
+        {
+          vars: 'all',
+          args: 'after-used',
+          ignoreRestSiblings: false,
+          varsIgnorePattern: '^[A-Z][A-Z_]*$',
+          argsIgnorePattern: '^_'
+        }
       ],
       'default-param-last': ['warn'],
       'import/prefer-default-export': 'off',
