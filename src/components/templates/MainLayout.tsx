@@ -1,7 +1,14 @@
 import { PropsWithChildren } from 'react'
+import { ThemeToggle } from '../atoms'
 
 export const MainLayout = ({ children }: PropsWithChildren) => (
-  <div className='m-0 flex justify-center min-w-80 min-h-screen font-sans leading-normal font-normal text-white/87 bg-gray-900 antialiased'>
-    {children}
+  <div className='p-6 min-h-screen bg-gray-900 text-white transition-colors duration-200'>
+    <div className='flex flex-col gap-6'>
+      <div className='flex justify-end'>
+        <ThemeToggle />
+      </div>
+
+      {children}
+    </div>
   </div>
 )

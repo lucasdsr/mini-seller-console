@@ -1,3 +1,17 @@
 @import 'tailwindcss';
 
 @import 'flowbite';
+
+@theme {
+  --color-primary: #a073fa;
+  --color-secondary: #fcfcfa;
+  --color-tertiary: #f2e7ef;
+}
+
+/* Transições suaves para mudança de tema */
+* {
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}

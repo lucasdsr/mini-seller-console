@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react'
-import { LeadsProvider } from './contexts'
+import { LeadsProvider, ThemeProvider } from './contexts'
 
 export const Providers = ({ children }: PropsWithChildren) => (
-  <LeadsProvider>{children}</LeadsProvider>
+  <ThemeProvider>
+    <LeadsProvider>{children}</LeadsProvider>
+  </ThemeProvider>
 )
