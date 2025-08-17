@@ -1,17 +1,14 @@
 import { Col } from '@/components'
-
 import { Filters } from './Filters'
-import { useHome } from './useHome'
 import { TableSection } from './TableSection'
+import { HomeProvider } from '@/contexts/home'
 
-export const Home = () => {
-  const { columns, filteredLeads, handleFilter } = useHome()
-
-  return (
+export const Home = () => (
+  <HomeProvider>
     <Col className='gap-6'>
       <h1 className='text-3xl font-bold text-white'>Mini Seller Console</h1>
-      <Filters onFilter={handleFilter} />
-      <TableSection columns={columns} items={filteredLeads} />
+      <Filters />
+      <TableSection />
     </Col>
-  )
-}
+  </HomeProvider>
+)

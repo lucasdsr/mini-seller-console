@@ -1,2 +1,2 @@
 export { TableSection } from './TableSection'
-export { LeadDetails } from './LeadDetails'
+export * from './components'

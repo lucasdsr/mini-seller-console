@@ -1,4 +1,4 @@
-import { Lead, LeadStatus, LEAD_STATUS_COLORS } from '@/contexts/leads'
+import { Lead, LeadStatus, LEAD_STATUS_COLORS } from '@/contexts'
 
 interface LeadDetailsProps {
   lead: Lead

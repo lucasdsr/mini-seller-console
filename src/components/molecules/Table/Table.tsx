@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Lead } from '@/contexts/leads'
+import { Lead } from '@/contexts'
 
 interface Column {
   id: string
@@ -38,6 +38,17 @@ export const Table = ({ columns, items, onRowClick }: TableProps) => (
           >
             {columns.map(column => {
               const value = item[column.id as keyof Lead]
+
+              // Se for a coluna de ações, renderizar diretamente o valor (que é um componente)
+              if (column.id === 'actions') {
+                return (
+                  <td key={`${index}-${column.id}`} className='px-6 py-4'>
+                    {value}
+                  </td>
+                )
+              }
+
+              // Para outras colunas, usar a função render se disponível ou converter para string
               const cellContent = column.render
                 ? column.render(value, item)
                 : String(value || '')

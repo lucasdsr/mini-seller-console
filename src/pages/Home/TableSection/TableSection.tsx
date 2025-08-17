@@ -1,42 +1,38 @@
-import { useState } from 'react'
-import { Container } from '@/components'
+import { Container, Tabs } from '@/components'
 import { Drawer } from '@/components/organisms'
-import { Table } from '@/components/molecules/Table'
-import { LeadDetails } from './LeadDetails'
-import { Lead } from '@/contexts/leads'
+import { LeadDetails } from './components/LeadDetails'
+import { LeadsTab } from './components/Tabs/LeadsTab'
+import { OpportunitiesTab } from './components/Tabs/OpportunitiesTab'
+import { ModalManager } from './components/ModalManager'
+import { useHomeContext } from '@/contexts/home'
 
-interface TableSectionProps {
-  columns: Array<{
-    id: string
-    title: string
-  }>
-  items: Lead[]
-}
+export const TableSection = () => {
+  const { selectedLead, isDrawerOpen, handleCloseDrawer } = useHomeContext()
 
-export const TableSection = ({ columns, items }: TableSectionProps) => {
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
-  const handleRowClick = (item: Lead) => {
-    setSelectedLead(item)
-    setIsDrawerOpen(true)
-  }
-
-  const handleCloseDrawer = () => {
-    setIsDrawerOpen(false)
-    setSelectedLead(null)
-  }
+  // Tabs para Leads e Opportunities
+  const tabs = [
+    {
+      id: 'leads',
+      label: 'Leads',
+      content: <LeadsTab />
+    },
+    {
+      id: 'opportunities',
+      label: 'Opportunities',
+      content: <OpportunitiesTab />
+    }
+  ]
 
   return (
-    <>
+    <ModalManager>
       <Container>
-        <h2 className='text-xl font-bold text-white'>Table</h2>
-        <Table columns={columns} items={items} onRowClick={handleRowClick} />
+        <Tabs tabs={tabs} defaultActiveTab='leads' />
       </Container>
 
+      {/* Drawer para detalhes do Lead */}
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
         {selectedLead && <LeadDetails lead={selectedLead} />}
       </Drawer>
-    </>
+    </ModalManager>
   )
 }

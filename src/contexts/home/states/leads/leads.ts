@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { LOCAL_STORAGE_LISTS_KEY } from './consts'
-import { LeadsList, UseLeadState } from './interface'
+import { LOCAL_STORAGE_LISTS_KEY, LeadsList, UseLeadState } from '.'
 import {
   getFromLocalStorage,
   saveToLocalStorage
 } from '@/utils/manageLocalStorage'
 
-import leadsData from '../../mocks/leads.json'
-import { LeadStatus } from './enums'
+import leadsData from '../../../../mocks/leads.json'
+import { LeadStatus } from '.'
 
 export const useLeadState = (): UseLeadState => {
   const storagedList =
@@ -33,24 +32,13 @@ export const useLeadState = (): UseLeadState => {
     [allLeads]
   )
 
-  const editLead = (id: number, field: string, value: string) => {
+  const removeLead = (leadId: number) => {
     setAllLeads(curr => {
-      const updatedList = curr.map(lead =>
-        lead.id === id ? { ...lead, [field]: value } : lead
-      )
+      const updatedList = curr.filter(lead => lead.id !== leadId)
       saveToLocalStorage(LOCAL_STORAGE_LISTS_KEY, updatedList)
       return updatedList
     })
   }
-
-  const finishConvertion = (leadId: number) =>
-    setAllLeads(curr =>
-      curr.reduce((acc, item) => {
-        if (item.id === leadId)
-          return [...acc, { ...item, status: LeadStatus.CONVERTED }]
-        return [...acc, item]
-      }, [] as LeadsList)
-    )
 
   useEffect(() => {
     saveToLocalStorage(LOCAL_STORAGE_LISTS_KEY, allLeads)
@@ -59,8 +47,6 @@ export const useLeadState = (): UseLeadState => {
   return {
     leadsList,
     convertedLeads,
-
-    editLead,
-    finishConvertion
+    removeLead
   }
 }

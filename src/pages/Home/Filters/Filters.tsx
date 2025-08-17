@@ -1,28 +1,49 @@
 import { Button, Container, Input, Row, Select } from '@/components'
-import { useFilters } from './useFilters'
+import { useHomeContext } from '@/contexts/home'
+import { LeadStatus } from '@/contexts'
+import { useState } from 'react'
 
-interface FiltersProps {
-  onFilter: (
-    search: string,
-    status: string,
-    sortOrder: 'asc' | 'desc' | null
-  ) => void
-}
+export const Filters = () => {
+  const { handleFilter, searchFilter, statusFilter, sortOrder, resetFilters } =
+    useHomeContext()
 
-export const Filters = ({ onFilter }: FiltersProps) => {
-  const {
-    search,
-    status,
-    sortOrder,
-    statusOptions,
-    sortOptions,
-    handleStatusChange,
-    handleSearchChange,
-    handleSortChange
-  } = useFilters()
+  const [search, setSearch] = useState(searchFilter)
+  const [status, setStatus] = useState(statusFilter)
+  const [sort, setSort] = useState(sortOrder)
+
+  const statusOptions = Object.values(LeadStatus).map(value => ({
+    value: value,
+    label: value
+  }))
+
+  const sortOptions = [
+    { value: '', label: 'No sorting' },
+    { value: 'asc', label: 'Score: Low to High' },
+    { value: 'desc', label: 'Score: High to Low' }
+  ]
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value)
+  }
+
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setStatus(e.target.value)
+  }
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    setSort(value === '' ? null : (value as 'asc' | 'desc'))
+  }
 
   const handleFilterClick = () => {
-    onFilter(search, status, sortOrder)
+    handleFilter(search, status, sort)
+  }
+
+  const handleResetClick = () => {
+    resetFilters()
+    setSearch('')
+    setStatus('')
+    setSort(null)
   }
 
   return (
@@ -47,7 +68,7 @@ export const Filters = ({ onFilter }: FiltersProps) => {
 
         <Select
           label='sort by score'
-          value={sortOrder || ''}
+          value={sort || ''}
           options={sortOptions}
           onChange={handleSortChange}
           placeholder='Select sorting'
@@ -55,6 +76,10 @@ export const Filters = ({ onFilter }: FiltersProps) => {
 
         <Button onClick={handleFilterClick} variant='primary' size='md'>
           Filter
+        </Button>
+
+        <Button onClick={handleResetClick} variant='secondary' size='md'>
+          Reset
         </Button>
       </Row>
     </Container>

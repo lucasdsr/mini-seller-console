@@ -6,7 +6,7 @@ export const useFilters = () => {
   const [status, setStatus] = useState('')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | null>(null)
 
-  const statusOptions = Object.entries(LeadStatus).map(([, value]) => ({
+  const statusOptions = Object.values(LeadStatus).map(value => ({
     value: value,
     label: value
   }))
