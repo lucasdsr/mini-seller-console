@@ -1,8 +1,8 @@
 import { Col } from '@/components'
 
 import { Filters } from './Filters'
-import { TableSection } from './TableSection'
 import { useHome } from './useHome'
+import { TableSection } from './TableSection'
 
 export const Home = () => {
   const { columns, filteredLeads, handleFilter } = useHome()

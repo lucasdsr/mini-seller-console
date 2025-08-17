@@ -5,13 +5,15 @@ type InputType = {
   value?: string
   placeholder?: string
   onChange: ChangeEventHandler<HTMLInputElement>
+  className?: string
 }
 
 export const Input = ({
   label,
   onChange,
   value = '',
-  placeholder
+  placeholder,
+  className = ''
 }: InputType) => (
   <div>
     {label && (
@@ -28,7 +30,9 @@ export const Input = ({
       id='first_name'
       onChange={onChange}
       placeholder={placeholder}
-      className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+      className={`
+        bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500,
+        ${className}`}
     />
   </div>
 )

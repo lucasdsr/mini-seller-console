@@ -1,2 +1,2 @@
 // Exportações de organismos virão aqui
-export {}
+export { Drawer } from './Drawer'

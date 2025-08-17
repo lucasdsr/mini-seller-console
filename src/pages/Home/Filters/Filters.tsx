@@ -30,10 +30,11 @@ export const Filters = ({ onFilter }: FiltersProps) => {
       <h2 className='text-xl font-bold text-white'>Filters</h2>
       <Row className='gap-6 w-full items-end'>
         <Input
-          onChange={handleSearchChange}
           label='search'
-          placeholder='Search by name or Company'
           value={search}
+          className='w-xs'
+          onChange={handleSearchChange}
+          placeholder='Search by name or Company'
         />
 
         <Select

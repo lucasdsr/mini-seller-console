@@ -1,17 +1,19 @@
 import { ReactNode } from 'react'
+import { Lead } from '@/contexts/leads'
 
 interface Column {
   id: string
   title: string
-  render?: (value: unknown, item: Record<string, unknown>) => ReactNode
+  render?: (value: unknown, item: Lead) => ReactNode
 }
 
 interface TableProps {
   columns: Column[]
-  items: Record<string, unknown>[]
+  items: Lead[]
+  onRowClick?: (item: Lead) => void
 }
 
-export const Table = ({ columns, items }: TableProps) => (
+export const Table = ({ columns, items, onRowClick }: TableProps) => (
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
     <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
       <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
@@ -27,10 +29,15 @@ export const Table = ({ columns, items }: TableProps) => (
         {items.map((item, index) => (
           <tr
             key={index}
-            className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200'
+            className={`odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200 ${
+              onRowClick
+                ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
+                : ''
+            }`}
+            onClick={() => onRowClick?.(item)}
           >
             {columns.map(column => {
-              const value = item[column.id]
+              const value = item[column.id as keyof Lead]
               const cellContent = column.render
                 ? column.render(value, item)
                 : String(value || '')
