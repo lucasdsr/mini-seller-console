@@ -1,19 +1,22 @@
 import { ReactNode } from 'react'
-import { Lead } from '@/contexts'
 
-interface Column {
+interface Column<T> {
   id: string
   title: string
-  render?: (value: unknown, item: Lead) => ReactNode
+  render?: (value: unknown, item: T) => ReactNode
 }
 
-interface TableProps {
-  columns: Column[]
-  items: Lead[]
-  onRowClick?: (item: Lead) => void
+interface TableProps<T> {
+  columns: Column<T>[]
+  items: T[]
+  onRowClick?: (item: T) => void
 }
 
-export const Table = ({ columns, items, onRowClick }: TableProps) => (
+export const Table = <T extends Record<string, unknown>>({
+  columns,
+  items,
+  onRowClick
+}: TableProps<T>) => (
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
     <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
       <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
@@ -37,13 +40,13 @@ export const Table = ({ columns, items, onRowClick }: TableProps) => (
             onClick={() => onRowClick?.(item)}
           >
             {columns.map(column => {
-              const value = item[column.id as keyof Lead]
+              const value = item[column.id as keyof T]
 
               // Se for a coluna de ações, renderizar diretamente o valor (que é um componente)
               if (column.id === 'actions') {
                 return (
                   <td key={`${index}-${column.id}`} className='px-6 py-4'>
-                    {value}
+                    {value as ReactNode}
                   </td>
                 )
               }

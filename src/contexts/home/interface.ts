@@ -14,6 +14,7 @@ export interface HomeContextData {
 
   // Estados de UI
   selectedLead: Lead | null
+  selectedOpportunity: Opportunity | null
   isDrawerOpen: boolean
   isConvertModalOpen: boolean
   leadToConvert: Lead | null
@@ -29,6 +30,7 @@ export interface HomeContextData {
 
   // Funções de UI
   handleRowClick: (item: Lead) => void
+  handleOpportunityRowClick: (item: Opportunity) => void
   handleCloseDrawer: () => void
   handleConvertLead: (lead: Lead) => void
   handleConfirmConversion: () => void

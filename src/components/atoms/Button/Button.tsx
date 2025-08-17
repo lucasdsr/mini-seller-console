@@ -14,7 +14,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const baseClasses =
-    'h-10 font-medium rounded-lg focus:ring-4 focus:outline-none transition-colors duration-200'
+    'cursor-pointer h-10 font-medium rounded-lg focus:ring-4 focus:outline-none transition-colors duration-200'
 
   const variantClasses = {
     primary:

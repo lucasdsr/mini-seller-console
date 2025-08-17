@@ -9,7 +9,16 @@ interface ConvertLeadModalProps {
 }
 
 export const ConvertLeadModal = ({ lead, isOpen }: ConvertLeadModalProps) => {
-  const { handleCloseConvertModal, handleConfirmConversion } = useHomeContext()
+  const {
+    handleCloseConvertModal,
+    handleConfirmConversion,
+    handleCloseDrawer
+  } = useHomeContext()
+
+  const handleConfirmAndClose = () => {
+    handleConfirmConversion()
+    handleCloseDrawer()
+  }
 
   if (!lead) return null
   return (
@@ -66,7 +75,7 @@ export const ConvertLeadModal = ({ lead, isOpen }: ConvertLeadModalProps) => {
           >
             Cancel
           </Button>
-          <Button onClick={handleConfirmConversion} className='px-6 py-2'>
+          <Button onClick={handleConfirmAndClose} className='px-6 py-2'>
             Confirm
           </Button>
         </div>

@@ -7,7 +7,8 @@ import { ModalManager } from './components/ModalManager'
 import { useHomeContext } from '@/contexts/home'
 
 export const TableSection = () => {
-  const { selectedLead, isDrawerOpen, handleCloseDrawer } = useHomeContext()
+  const { selectedLead, selectedOpportunity, isDrawerOpen, handleCloseDrawer } =
+    useHomeContext()
 
   // Tabs para Leads e Opportunities
   const tabs = [
@@ -23,15 +24,18 @@ export const TableSection = () => {
     }
   ]
 
+  // Determinar qual item mostrar no drawer
+  const selectedItem = selectedOpportunity || selectedLead
+
   return (
     <ModalManager>
       <Container>
         <Tabs tabs={tabs} defaultActiveTab='leads' />
       </Container>
 
-      {/* Drawer para detalhes do Lead */}
+      {/* Drawer para detalhes do Lead ou Opportunity */}
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
-        {selectedLead && <LeadDetails lead={selectedLead} />}
+        {selectedItem && <LeadDetails item={selectedItem} />}
       </Drawer>
     </ModalManager>
   )

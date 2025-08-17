@@ -64,15 +64,17 @@ export const Modal = ({
 
   return (
     <>
+      {/* Overlay de fundo - atrás de tudo */}
       <div
-        className='fixed inset-0 z-40 bg-gray-900 bg-opacity-50 transition-opacity'
+        className='fixed inset-0 z-40 bg-gray-900 opacity-80 transition-opacity'
         onClick={onClose}
         aria-hidden='true'
       />
 
-      <div className='fixed inset-0 z-50 flex items-center justify-center p-4'>
+      {/* Container da modal - na frente */}
+      <div className='fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none'>
         <div
-          className={`relative w-full ${sizeClasses[size]} bg-white rounded-lg shadow-xl dark:bg-gray-800 ${className}`}
+          className={`relative w-full ${sizeClasses[size]} bg-white rounded-lg shadow-xl dark:bg-gray-800 ${className} pointer-events-auto`}
           role='dialog'
           aria-modal='true'
           aria-labelledby={title ? 'modal-title' : undefined}

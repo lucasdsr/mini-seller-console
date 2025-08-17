@@ -20,6 +20,8 @@ export const useHomeState = (): HomeContextData => {
 
   // Estados de UI
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
+  const [selectedOpportunity, setSelectedOpportunity] =
+    useState<Opportunity | null>(null)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isConvertModalOpen, setIsConvertModalOpen] = useState(false)
   const [leadToConvert, setLeadToConvert] = useState<Lead | null>(null)
@@ -66,12 +68,20 @@ export const useHomeState = (): HomeContextData => {
   // Funções de UI
   const handleRowClick = (item: Lead) => {
     setSelectedLead(item)
+    setSelectedOpportunity(null)
+    setIsDrawerOpen(true)
+  }
+
+  const handleOpportunityRowClick = (item: Opportunity) => {
+    setSelectedOpportunity(item)
+    setSelectedLead(null)
     setIsDrawerOpen(true)
   }
 
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false)
     setSelectedLead(null)
+    setSelectedOpportunity(null)
   }
 
   const handleConvertLead = (lead: Lead) => {
@@ -121,12 +131,14 @@ export const useHomeState = (): HomeContextData => {
     statusFilter,
     sortOrder,
     selectedLead,
+    selectedOpportunity,
     isDrawerOpen,
     isConvertModalOpen,
     leadToConvert,
     showToast,
     handleFilter,
     handleRowClick,
+    handleOpportunityRowClick,
     handleCloseDrawer,
     handleConvertLead,
     handleConfirmConversion,
