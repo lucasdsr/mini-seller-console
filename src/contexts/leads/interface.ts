@@ -1,19 +1,21 @@
+import { LeadSource, LeadStatus } from './enums'
+
 export type Lead = {
   id: number
-  title: string
-  description?: string
-  completed: boolean
+  name: string
+  company: string
+  email: string
+  source: LeadSource
+  score: number
+  status: LeadStatus
 }
 
 export type LeadsList = Lead[]
 
 export interface UseLeadState {
   leadsList: LeadsList
-  completedLeads: LeadsList
+  convertedLeads: LeadsList
 
-  addLead: VoidFunction
-  clearConfirmedLeads: VoidFunction
-  deleteLead: (leadId: number) => void
-  toggleLead: (leadId: number) => void
+  finishConvertion: (leadId: number) => void
   editLead: (leadId: number, field: string, value: string) => void
 }

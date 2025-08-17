@@ -4,8 +4,8 @@
 
 @theme {
   --color-primary: #a073fa;
-  --color-secondary: #fcfcfa;
-  --color-tertiary: #f2e7ef;
+  --color-secondary: #1f1d37;
+  --color-black: #080711;
 }
 
 /* Transições suaves para mudança de tema */

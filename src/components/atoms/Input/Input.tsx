@@ -1,8 +1,8 @@
 import { ChangeEventHandler } from 'react'
 
 type InputType = {
-  value?: string
   label?: string
+  value?: string
   placeholder?: string
   onChange: ChangeEventHandler<HTMLInputElement>
 }

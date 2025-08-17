@@ -1,35 +1,37 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { emptyLead, LOCAL_STORAGE_LISTS_KEY } from './consts'
+import { LOCAL_STORAGE_LISTS_KEY } from './consts'
 import { LeadsList, UseLeadState } from './interface'
 import {
   getFromLocalStorage,
   saveToLocalStorage
 } from '@/utils/manageLocalStorage'
 
+import leadsData from '../../mocks/leads.json'
+import { LeadStatus } from './enums'
+
 export const useLeadState = (): UseLeadState => {
   const storagedList =
-    getFromLocalStorage<LeadsList>(LOCAL_STORAGE_LISTS_KEY) || []
-  const [allLeads, setAllLeads] = useState<LeadsList>(storagedList)
-  const [nextLeadId, setNextLeadId] = useState<number>(allLeads.length + 1)
+    getFromLocalStorage<LeadsList>(LOCAL_STORAGE_LISTS_KEY) ||
+    (leadsData as LeadsList)
 
-  const { leadsList, completedLeads } = useMemo(
+  const defaultLeads = storagedList.length
+    ? storagedList
+    : (leadsData as LeadsList)
+  const [allLeads, setAllLeads] = useState<LeadsList>(defaultLeads)
+
+  const { leadsList, convertedLeads } = useMemo(
     () =>
       allLeads.reduce(
         (acc, lead) => {
-          if (lead.completed)
-            return { ...acc, completedLeads: [...acc.completedLeads, lead] }
+          if (lead.status === LeadStatus.CONVERTED)
+            return { ...acc, convertedLeads: [...acc.convertedLeads, lead] }
           return { ...acc, leadsList: [...acc.leadsList, lead] }
         },
-        { leadsList: [] as LeadsList, completedLeads: [] as LeadsList }
+        { leadsList: [] as LeadsList, convertedLeads: [] as LeadsList }
       ),
     [allLeads]
   )
-
-  const addLead = () => {
-    setAllLeads(curr => [...curr, { ...emptyLead, id: nextLeadId }])
-    setNextLeadId(id => id + 1)
-  }
 
   const editLead = (id: number, field: string, value: string) => {
     setAllLeads(curr => {
@@ -41,20 +43,14 @@ export const useLeadState = (): UseLeadState => {
     })
   }
 
-  const deleteLead = (leadId: number) =>
-    setAllLeads(curr => curr.filter(({ id }) => id !== leadId))
-
-  const toggleLead = (leadId: number) =>
+  const finishConvertion = (leadId: number) =>
     setAllLeads(curr =>
       curr.reduce((acc, item) => {
         if (item.id === leadId)
-          return [...acc, { ...item, completed: !item.completed }]
+          return [...acc, { ...item, status: LeadStatus.CONVERTED }]
         return [...acc, item]
       }, [] as LeadsList)
     )
-
-  const clearConfirmedLeads = () =>
-    setAllLeads(curr => curr.filter(item => !item.completed))
 
   useEffect(() => {
     saveToLocalStorage(LOCAL_STORAGE_LISTS_KEY, allLeads)
@@ -62,12 +58,9 @@ export const useLeadState = (): UseLeadState => {
 
   return {
     leadsList,
-    completedLeads,
+    convertedLeads,
 
-    addLead,
     editLead,
-    deleteLead,
-    toggleLead,
-    clearConfirmedLeads
+    finishConvertion
   }
 }

@@ -1,2 +1,2 @@
 // Exportações de moléculas virão aqui
-export {}
+export * from './Table'

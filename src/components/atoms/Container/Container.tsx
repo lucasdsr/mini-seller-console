@@ -1,14 +1,17 @@
 import { PropsWithChildren } from 'react'
+import { Col } from '../Col'
 
 type IContainer = {
-  className?: 'string'
+  className?: string
 }
 
 export const Container = ({
   children,
   className
 }: PropsWithChildren<IContainer>) => (
-  <div className={`w-full h-min p-6 bg-tertiary rounded-lg ${className}`}>
+  <Col
+    className={`w-full gap-6 h-min p-6 bg-secondary rounded-lg ${className}`}
+  >
     {children}
-  </div>
+  </Col>
 )
