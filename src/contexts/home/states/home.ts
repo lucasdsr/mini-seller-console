@@ -9,6 +9,7 @@ import {
   useFiltersWithStorage
 } from './filters'
 import { HomeContextData } from '../interface'
+import { simulateDelay } from '@/utils'
 
 export const useHomeState = (): HomeContextData => {
   const { leadsList, removeLead, updateLead } = useLeadsState()
@@ -24,16 +25,17 @@ export const useHomeState = (): HomeContextData => {
   const [isConvertModalOpen, setIsConvertModalOpen] = useState(false)
   const [leadToConvert, setLeadToConvert] = useState<Lead | null>(null)
   const [showToast, setShowToast] = useState(false)
+  const [isFiltering, setIsFiltering] = useState(false)
 
   const columns = [
-    { id: 'id', title: 'id' },
-    { id: 'name', title: 'name' },
-    { id: 'company', title: 'company' },
-    { id: 'email', title: 'email' },
-    { id: 'source', title: 'source' },
-    { id: 'score', title: 'score' },
-    { id: 'status', title: 'status' },
-    { id: 'actions', title: 'Actions' }
+    { id: 'id', title: 'ID', width: 60 },
+    { id: 'name', title: 'Name', width: 200 },
+    { id: 'company', title: 'Company', width: 200 },
+    { id: 'email', title: 'Email', width: 180 },
+    { id: 'source', title: 'Source', width: 100 },
+    { id: 'score', title: 'Score', width: 80 },
+    { id: 'status', title: 'Status', width: 100 },
+    { id: 'actions', title: 'Actions', width: 80 }
   ]
 
   const filteredLeads = useLeadFilters(
@@ -50,12 +52,15 @@ export const useHomeState = (): HomeContextData => {
     sortOrder
   )
 
-  const handleFilter = (
+  const handleFilter = async (
     search: string,
     status: string,
     sortOrder: 'asc' | 'desc' | null
   ) => {
+    setIsFiltering(true)
+    await simulateDelay(1000) // 1 segundo de delay
     updateFilters({ search, status, sortOrder })
+    setIsFiltering(false)
   }
 
   const handleRowClick = (item: Lead) => {
@@ -81,8 +86,11 @@ export const useHomeState = (): HomeContextData => {
     setIsConvertModalOpen(true)
   }
 
-  const handleConfirmConversion = () => {
+  const handleConfirmConversion = async () => {
     if (leadToConvert) {
+      setIsFiltering(true)
+      await simulateDelay(1000) // 1 segundo de delay para conversão
+
       const opportunity: Opportunity = {
         ...leadToConvert,
         convertedAt: new Date()
@@ -97,6 +105,8 @@ export const useHomeState = (): HomeContextData => {
       setShowToast(true)
 
       setTimeout(() => setShowToast(false), 5000)
+
+      setIsFiltering(false)
     }
   }
 
@@ -109,13 +119,18 @@ export const useHomeState = (): HomeContextData => {
     setShowToast(false)
   }
 
-  const handleUpdateLead = (leadId: number, updates: Partial<Lead>) => {
+  const handleUpdateLead = async (leadId: number, updates: Partial<Lead>) => {
+    setIsFiltering(true)
+    await simulateDelay(800) // 800ms de delay para edição
+
     updateLead(leadId, updates)
 
     // Update selected lead if it's the one being edited
     if (selectedLead && selectedLead.id === leadId) {
       setSelectedLead({ ...selectedLead, ...updates })
     }
+
+    setIsFiltering(false)
   }
 
   return {
@@ -132,6 +147,7 @@ export const useHomeState = (): HomeContextData => {
     isConvertModalOpen,
     leadToConvert,
     showToast,
+    isFiltering,
     handleFilter,
     handleRowClick,
     handleOpportunityRowClick,

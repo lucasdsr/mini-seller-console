@@ -16,20 +16,21 @@ export interface HomeContextData {
   isConvertModalOpen: boolean
   leadToConvert: Lead | null
   showToast: boolean
+  isFiltering: boolean
 
   handleFilter: (
     search: string,
     status: string,
     sortOrder: 'asc' | 'desc' | null
-  ) => void
+  ) => Promise<void>
   resetFilters: () => void
 
   handleRowClick: (item: Lead) => void
   handleOpportunityRowClick: (item: Opportunity) => void
   handleCloseDrawer: () => void
   handleConvertLead: (lead: Lead) => void
-  handleConfirmConversion: () => void
+  handleConfirmConversion: () => Promise<void>
   handleCloseConvertModal: () => void
   handleCloseToast: () => void
-  handleUpdateLead: (leadId: number, updates: Partial<Lead>) => void
+  handleUpdateLead: (leadId: number, updates: Partial<Lead>) => Promise<void>
 }

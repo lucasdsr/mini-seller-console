@@ -70,16 +70,16 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
     setEditingField(null)
   }
 
-  const handleSaveEmail = (email: string) => {
+  const handleSaveEmail = async (email: string) => {
     if (lead) {
-      handleUpdateLead(lead.id, { email })
+      await handleUpdateLead(lead.id, { email })
     }
     setEditingField(null)
   }
 
-  const handleSaveStatus = (status: string) => {
+  const handleSaveStatus = async (status: string) => {
     if (lead) {
-      handleUpdateLead(lead.id, { status: status as LeadStatus })
+      await handleUpdateLead(lead.id, { status: status as LeadStatus })
     }
     setEditingField(null)
   }

@@ -15,8 +15,8 @@ export const ConvertLeadModal = ({ lead, isOpen }: ConvertLeadModalProps) => {
     handleCloseDrawer
   } = useHomeContext()
 
-  const handleConfirmAndClose = () => {
-    handleConfirmConversion()
+  const handleConfirmAndClose = async () => {
+    await handleConfirmConversion()
     handleCloseDrawer()
   }
 

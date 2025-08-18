@@ -35,8 +35,8 @@ export const Filters = () => {
     setSort(value === '' ? null : (value as 'asc' | 'desc'))
   }
 
-  const handleFilterClick = () => {
-    handleFilter(search, status, sort)
+  const handleFilterClick = async () => {
+    await handleFilter(search, status, sort)
   }
 
   const handleResetClick = () => {
