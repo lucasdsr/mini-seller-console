@@ -26,13 +26,13 @@ export const Tabs = ({ tabs, defaultActiveTab, className = '' }: TabsProps) => {
     <div className={className}>
       {/* Tab Headers */}
       <div className='border-b border-gray-200 dark:border-gray-700'>
-        <ul className='flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400'>
+        <ul className='flex flex-wrap -mb-px text-xs sm:text-sm font-medium text-center text-gray-500 dark:text-gray-400'>
           {tabs.map(tab => (
-            <li key={tab.id} className='me-2'>
+            <li key={tab.id} className='me-1 sm:me-2'>
               <button
                 onClick={() => handleTabClick(tab.id)}
                 disabled={tab.disabled}
-                className={`inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg ${
+                className={`inline-flex items-center justify-center p-2 sm:p-4 border-b-2 rounded-t-lg ${
                   activeTab === tab.id
                     ? 'text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500'
                     : 'border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'
@@ -50,7 +50,7 @@ export const Tabs = ({ tabs, defaultActiveTab, className = '' }: TabsProps) => {
       </div>
 
       {/* Tab Content */}
-      <div className='mt-4'>{activeTabContent}</div>
+      <div className='mt-3 sm:mt-4'>{activeTabContent}</div>
     </div>
   )
 }

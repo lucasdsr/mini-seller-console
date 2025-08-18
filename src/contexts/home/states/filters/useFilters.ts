@@ -12,19 +12,16 @@ export const useFilters = <T extends FilterableItem>(
 ) =>
   useMemo(() => {
     let filteredItems = items.filter(item => {
-      // Filtro por busca (nome ou empresa)
       const searchMatch =
         !search ||
         item.name.toLowerCase().includes(search.toLowerCase()) ||
         item.company.toLowerCase().includes(search.toLowerCase())
 
-      // Filtro por status
       const statusMatch = !status || item.status === status
 
       return searchMatch && statusMatch
     })
 
-    // Ordenação por score
     if (sortOrder) {
       filteredItems = [...filteredItems].sort((a, b) => {
         const scoreA = Number(a.score)

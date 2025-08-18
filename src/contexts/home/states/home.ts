@@ -14,11 +14,9 @@ export const useHomeState = (): HomeContextData => {
   const { leadsList, removeLead } = useLeadsState()
   const { opportunitiesList, addOpportunity } = useOpportunitiesState()
 
-  // Hook de filtros com localStorage
   const { filters, updateFilters, resetFilters } = useFiltersWithStorage()
   const { search: searchFilter, status: statusFilter, sortOrder } = filters
 
-  // Estados de UI
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
   const [selectedOpportunity, setSelectedOpportunity] =
     useState<Opportunity | null>(null)
@@ -27,7 +25,6 @@ export const useHomeState = (): HomeContextData => {
   const [leadToConvert, setLeadToConvert] = useState<Lead | null>(null)
   const [showToast, setShowToast] = useState(false)
 
-  // Colunas da tabela
   const columns = [
     { id: 'id', title: 'id' },
     { id: 'name', title: 'name' },
@@ -39,7 +36,6 @@ export const useHomeState = (): HomeContextData => {
     { id: 'actions', title: 'Actions' }
   ]
 
-  // Filtros de leads
   const filteredLeads = useLeadFilters(
     leadsList,
     searchFilter,
@@ -47,7 +43,6 @@ export const useHomeState = (): HomeContextData => {
     sortOrder
   )
 
-  // Filtros de opportunities
   const filteredOpportunities = useOpportunityFilters(
     opportunitiesList,
     searchFilter,
@@ -55,17 +50,14 @@ export const useHomeState = (): HomeContextData => {
     sortOrder
   )
 
-  // Funções de filtros
   const handleFilter = (
     search: string,
     status: string,
     sortOrder: 'asc' | 'desc' | null
   ) => {
-    // Atualizar os filtros usando o hook com localStorage
     updateFilters({ search, status, sortOrder })
   }
 
-  // Funções de UI
   const handleRowClick = (item: Lead) => {
     setSelectedLead(item)
     setSelectedOpportunity(null)
@@ -91,24 +83,19 @@ export const useHomeState = (): HomeContextData => {
 
   const handleConfirmConversion = () => {
     if (leadToConvert) {
-      // Criar opportunity
       const opportunity: Opportunity = {
         ...leadToConvert,
         convertedAt: new Date()
       }
 
-      // Adicionar ao contexto de opportunities
       addOpportunity(opportunity)
 
-      // Remover do contexto de leads
       removeLead(leadToConvert.id)
 
-      // Fechar modal e mostrar toast
       setIsConvertModalOpen(false)
       setLeadToConvert(null)
       setShowToast(true)
 
-      // Fechar toast após 5 segundos
       setTimeout(() => setShowToast(false), 5000)
     }
   }

@@ -18,11 +18,15 @@ export const Table = <T extends Record<string, unknown>>({
   onRowClick
 }: TableProps<T>) => (
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-    <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
+    <table className='w-full text-xs sm:text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
       <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
         <tr>
           {columns.map(column => (
-            <th key={column.id} scope='col' className='px-6 py-3'>
+            <th
+              key={column.id}
+              scope='col'
+              className='px-3 sm:px-6 py-2 sm:py-3'
+            >
               {column.title}
             </th>
           ))}
@@ -42,22 +46,26 @@ export const Table = <T extends Record<string, unknown>>({
             {columns.map(column => {
               const value = item[column.id as keyof T]
 
-              // Se for a coluna de ações, renderizar diretamente o valor (que é um componente)
               if (column.id === 'actions') {
                 return (
-                  <td key={`${index}-${column.id}`} className='px-6 py-4'>
+                  <td
+                    key={`${index}-${column.id}`}
+                    className='px-3 sm:px-6 py-3 sm:py-4'
+                  >
                     {value as ReactNode}
                   </td>
                 )
               }
 
-              // Para outras colunas, usar a função render se disponível ou converter para string
               const cellContent = column.render
                 ? column.render(value, item)
                 : String(value || '')
 
               return (
-                <td key={`${index}-${column.id}`} className='px-6 py-4'>
+                <td
+                  key={`${index}-${column.id}`}
+                  className='px-3 sm:px-6 py-3 sm:py-4'
+                >
                   {cellContent}
                 </td>
               )

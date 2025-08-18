@@ -47,13 +47,13 @@ export const Filters = () => {
   }
 
   return (
-    <Container className='flex flex-col gap-4'>
-      <h2 className='text-xl font-bold text-white'>Filters</h2>
-      <Row className='gap-6 w-full items-end'>
+    <Container className='flex flex-col gap-4 sm:gap-6'>
+      <h2 className='text-lg sm:text-xl font-bold text-white'>Filters</h2>
+      <Row className='gap-3 sm:gap-6 w-full items-end flex-wrap'>
         <Input
           label='search'
           value={search}
-          className='w-xs'
+          className='w-full sm:w-xs min-w-[200px]'
           onChange={handleSearchChange}
           placeholder='Search by name or Company'
         />
@@ -64,6 +64,7 @@ export const Filters = () => {
           options={statusOptions}
           onChange={handleStatusChange}
           placeholder='Select a status'
+          className='w-full sm:w-auto min-w-[180px]'
         />
 
         <Select
@@ -72,15 +73,28 @@ export const Filters = () => {
           options={sortOptions}
           onChange={handleSortChange}
           placeholder='Select sorting'
+          className='w-full sm:w-auto min-w-[200px]'
         />
 
-        <Button onClick={handleFilterClick} variant='primary' size='md'>
-          Filter
-        </Button>
+        <div className='flex gap-2 sm:gap-3 w-full sm:w-auto'>
+          <Button
+            onClick={handleFilterClick}
+            variant='primary'
+            size='md'
+            className='flex-1 sm:flex-none'
+          >
+            Filter
+          </Button>
 
-        <Button onClick={handleResetClick} variant='secondary' size='md'>
-          Reset
-        </Button>
+          <Button
+            onClick={handleResetClick}
+            variant='secondary'
+            size='md'
+            className='flex-1 sm:flex-none'
+          >
+            Reset
+          </Button>
+        </div>
       </Row>
     </Container>
   )

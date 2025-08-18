@@ -9,7 +9,9 @@ export const OpportunitiesTab = () => {
 
   return (
     <div>
-      <h2 className='text-xl font-bold text-white mb-4'>Opportunities</h2>
+      <h2 className='text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4'>
+        Opportunities
+      </h2>
       {filteredOpportunities.length > 0 ? (
         <Table<Opportunity>
           columns={columns}

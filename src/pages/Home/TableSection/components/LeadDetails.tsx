@@ -10,12 +10,10 @@ interface ItemDetailsProps {
 export const LeadDetails = ({ item }: ItemDetailsProps) => {
   const { handleConvertLead, opportunitiesList } = useHomeContext()
 
-  // Verificar se é uma opportunity (tem propriedade convertedAt)
   const isOpportunity = 'convertedAt' in item
   const opportunity = isOpportunity ? (item as Opportunity) : null
   const lead = isOpportunity ? null : (item as Lead)
 
-  // Verificar se o lead já foi convertido (só para leads)
   const isConverted = lead
     ? opportunitiesList.some(opp => opp.id === lead.id)
     : false
@@ -43,7 +41,7 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
   }
 
   const formatDate = (date: Date) =>
-    new Date(date).toLocaleDateString('pt-BR', {
+    new Date(date).toLocaleDateString('en-US', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
@@ -58,16 +56,16 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
   }
 
   return (
-    <div className='p-6'>
-      <h2 className='text-2xl font-bold text-gray-900 dark:text-white mb-8'>
-        {isOpportunity ? 'Detalhes da Oportunidade' : 'Detalhes do Lead'}
+    <div className='p-4 sm:p-6'>
+      <h2 className='text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8'>
+        {isOpportunity ? 'Opportunity Details' : 'Lead Details'}
       </h2>
 
-      <div className='space-y-6'>
-        <div className='bg-gray-50 dark:bg-gray-700 p-6 rounded-lg'>
-          <div className='flex justify-between items-center mb-4'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
-              Informações Básicas
+      <div className='space-y-4 sm:space-y-6'>
+        <div className='bg-gray-50 dark:bg-gray-700 p-4 sm:p-6 rounded-lg'>
+          <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0'>
+            <h3 className='text-base sm:text-lg font-semibold text-gray-900 dark:text-white'>
+              Basic Information
             </h3>
             {(isOpportunity || isConverted) && (
               <Badge variant='success' size='sm'>
@@ -75,81 +73,85 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
               </Badge>
             )}
           </div>
-          <div className='grid grid-cols-1 gap-4'>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
+          <div className='grid grid-cols-1 gap-3 sm:gap-4'>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
                 ID:
               </span>
-              <span className='text-gray-900 dark:text-white font-mono'>
+              <span className='text-gray-900 dark:text-white font-mono text-sm sm:text-base'>
                 #{item.id}
               </span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
-                Nome:
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                Name:
               </span>
-              <span className='text-gray-900 dark:text-white font-medium'>
+              <span className='text-gray-900 dark:text-white font-medium text-sm sm:text-base break-words'>
                 {item.name}
               </span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
-                Empresa:
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                Company:
               </span>
-              <span className='text-gray-900 dark:text-white'>
+              <span className='text-gray-900 dark:text-white text-sm sm:text-base break-words'>
                 {item.company}
               </span>
             </div>
           </div>
         </div>
 
-        <div className='bg-gray-50 dark:bg-gray-700 p-6 rounded-lg'>
-          <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-            Contato
+        <div className='bg-gray-50 dark:bg-gray-700 p-4 sm:p-6 rounded-lg'>
+          <h3 className='text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+            Contact
           </h3>
-          <div className='grid grid-cols-1 gap-4'>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
+          <div className='grid grid-cols-1 gap-3 sm:gap-4'>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
                 Email:
               </span>
-              <span className='text-gray-900 dark:text-white break-all'>
+              <span className='text-gray-900 dark:text-white break-all text-sm sm:text-base'>
                 {item.email}
               </span>
             </div>
           </div>
         </div>
 
-        <div className='bg-gray-50 dark:bg-gray-700 p-6 rounded-lg'>
-          <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-            Informações de Negócio
+        <div className='bg-gray-50 dark:bg-gray-700 p-4 sm:p-6 rounded-lg'>
+          <h3 className='text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+            Business Information
           </h3>
-          <div className='grid grid-cols-1 gap-4'>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
-                Origem:
+          <div className='grid grid-cols-1 gap-3 sm:gap-4'>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                Source:
               </span>
-              <span className='text-gray-900 dark:text-white'>
+              <span className='text-gray-900 dark:text-white text-sm sm:text-base'>
                 {item.source}
               </span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
                 Score:
               </span>
-              {getScoreDisplay(item.score)}
+              <span className='text-sm sm:text-base'>
+                {getScoreDisplay(item.score)}
+              </span>
             </div>
-            <div className='flex justify-between items-center py-2'>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
+            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
                 Status:
               </span>
-              {getStatusDisplay(item.status)}
+              <div className='text-sm sm:text-base'>
+                {getStatusDisplay(item.status)}
+              </div>
             </div>
             {opportunity && (
-              <div className='flex justify-between items-center py-2'>
-                <span className='font-medium text-gray-700 dark:text-gray-300'>
-                  Convertido em:
+              <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+                <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                  Converted at:
                 </span>
-                <span className='text-gray-900 dark:text-white font-medium'>
+                <span className='text-gray-900 dark:text-white font-medium text-sm sm:text-base'>
                   {formatDate(opportunity.convertedAt)}
                 </span>
               </div>
@@ -157,14 +159,13 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
           </div>
         </div>
 
-        {/* Botão Convert Lead - só aparece para leads não convertidos */}
         {lead && !isConverted && (
           <div className='flex justify-end pt-4'>
             <Button
               variant='primary'
               size='md'
               onClick={handleConvertClick}
-              className='bg-green-600 hover:bg-green-700 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
+              className='w-full sm:w-auto bg-green-600 hover:bg-green-700 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
             >
               Convert Lead
             </Button>

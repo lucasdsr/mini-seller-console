@@ -1,63 +1,63 @@
 [
   {
     "id": 1,
-    "name": "João Silva",
+    "name": "John Silva",
     "company": "TechCorp Solutions",
-    "email": "joao.silva@techcorp.com",
+    "email": "john.silva@techcorp.com",
     "source": "Website",
     "score": 85,
     "status": "Qualified"
   },
   {
     "id": 2,
-    "name": "Maria Santos",
+    "name": "Mary Santos",
     "company": "Digital Innovations",
-    "email": "maria.santos@digitalinnovations.com",
+    "email": "mary.santos@digitalinnovations.com",
     "source": "LinkedIn",
     "score": 92,
     "status": "Hot Lead"
   },
   {
     "id": 3,
-    "name": "Pedro Oliveira",
+    "name": "Peter Oliveira",
     "company": "StartupXYZ",
-    "email": "pedro.oliveira@startupxyz.com",
+    "email": "peter.oliveira@startupxyz.com",
     "source": "Referral",
     "score": 78,
     "status": "Qualified"
   },
   {
     "id": 4,
-    "name": "Ana Costa",
+    "name": "Anna Costa",
     "company": "Global Systems",
-    "email": "ana.costa@globalsystems.com",
+    "email": "anna.costa@globalsystems.com",
     "source": "Cold Call",
     "score": 65,
     "status": "Prospect"
   },
   {
     "id": 5,
-    "name": "Carlos Ferreira",
+    "name": "Charles Ferreira",
     "company": "Innovation Labs",
-    "email": "carlos.ferreira@innovationlabs.com",
+    "email": "charles.ferreira@innovationlabs.com",
     "source": "Website",
     "score": 88,
     "status": "Qualified"
   },
   {
     "id": 6,
-    "name": "Lucia Rodrigues",
+    "name": "Lucy Rodrigues",
     "company": "TechStart",
-    "email": "lucia.rodrigues@techstart.com",
+    "email": "lucy.rodrigues@techstart.com",
     "source": "LinkedIn",
     "score": 95,
     "status": "Hot Lead"
   },
   {
     "id": 7,
-    "name": "Roberto Almeida",
+    "name": "Robert Almeida",
     "company": "Digital Dynamics",
-    "email": "roberto.almeida@digitaldynamics.com",
+    "email": "robert.almeida@digitaldynamics.com",
     "source": "Referral",
     "score": 82,
     "status": "Qualified"
@@ -73,9 +73,9 @@
   },
   {
     "id": 9,
-    "name": "Ricardo Souza",
+    "name": "Richard Souza",
     "company": "Innovation Hub",
-    "email": "ricardo.souza@innovationhub.com",
+    "email": "richard.souza@innovationhub.com",
     "source": "Cold Call",
     "score": 68,
     "status": "Prospect"
@@ -109,9 +109,9 @@
   },
   {
     "id": 13,
-    "name": "Andre Santos",
+    "name": "Andrew Santos",
     "company": "Tech Innovations",
-    "email": "andre.santos@techinnovations.com",
+    "email": "andrew.santos@techinnovations.com",
     "source": "Cold Call",
     "score": 63,
     "status": "Prospect"
@@ -154,9 +154,9 @@
   },
   {
     "id": 18,
-    "name": "Isabela Rodrigues",
+    "name": "Isabella Rodrigues",
     "company": "Startup Solutions",
-    "email": "isabela.rodrigues@startupsolutions.com",
+    "email": "isabella.rodrigues@startupsolutions.com",
     "source": "Cold Call",
     "score": 66,
     "status": "Prospect"
@@ -181,18 +181,18 @@
   },
   {
     "id": 21,
-    "name": "Rafael Souza",
+    "name": "Raphael Souza",
     "company": "Digital Innovations",
-    "email": "rafael.souza@digitalinnovations.com",
+    "email": "raphael.souza@digitalinnovations.com",
     "source": "Referral",
     "score": 77,
     "status": "Qualified"
   },
   {
     "id": 22,
-    "name": "Beatriz Martins",
+    "name": "Beatrice Martins",
     "company": "Tech Hub",
-    "email": "beatriz.martins@techhub.com",
+    "email": "beatrice.martins@techhub.com",
     "source": "Cold Call",
     "score": 64,
     "status": "Prospect"
@@ -235,9 +235,9 @@
   },
   {
     "id": 27,
-    "name": "Felipe Costa",
+    "name": "Philip Costa",
     "company": "Startup Innovations",
-    "email": "felipe.costa@startupinnovations.com",
+    "email": "philip.costa@startupinnovations.com",
     "source": "Cold Call",
     "score": 67,
     "status": "Prospect"
@@ -271,9 +271,9 @@
   },
   {
     "id": 31,
-    "name": "Matheus Almeida",
+    "name": "Matthew Almeida",
     "company": "Digital Creations",
-    "email": "matheus.almeida@digitalcreations.com",
+    "email": "matthew.almeida@digitalcreations.com",
     "source": "Cold Call",
     "score": 69,
     "status": "Prospect"
@@ -307,9 +307,9 @@
   },
   {
     "id": 35,
-    "name": "Vinicius Pereira",
+    "name": "Vincent Pereira",
     "company": "Digital Innovations",
-    "email": "vinicius.pereira@digitalinnovations.com",
+    "email": "vincent.pereira@digitalinnovations.com",
     "source": "Website",
     "score": 74,
     "status": "Qualified"
@@ -343,18 +343,18 @@
   },
   {
     "id": 39,
-    "name": "Davi Costa",
+    "name": "David Costa",
     "company": "Tech Creations",
-    "email": "davi.costa@techcreations.com",
+    "email": "david.costa@techcreations.com",
     "source": "Referral",
     "score": 80,
     "status": "Qualified"
   },
   {
     "id": 40,
-    "name": "Helena Silva",
+    "name": "Helen Silva",
     "company": "Innovation Hub",
-    "email": "helena.silva@innovationhub.com",
+    "email": "helen.silva@innovationhub.com",
     "source": "Cold Call",
     "score": 65,
     "status": "Prospect"
@@ -379,9 +379,9 @@
   },
   {
     "id": 43,
-    "name": "Miguel Almeida",
+    "name": "Michael Almeida",
     "company": "Startup Innovations",
-    "email": "miguel.almeida@startupinnovations.com",
+    "email": "michael.almeida@startupinnovations.com",
     "source": "Referral",
     "score": 79,
     "status": "Qualified"
@@ -397,9 +397,9 @@
   },
   {
     "id": 45,
-    "name": "Bernardo Souza",
+    "name": "Bernard Souza",
     "company": "Innovation Center",
-    "email": "bernardo.souza@innovationcenter.com",
+    "email": "bernard.souza@innovationcenter.com",
     "source": "Cold Call",
     "score": 68,
     "status": "Prospect"
@@ -415,9 +415,9 @@
   },
   {
     "id": 47,
-    "name": "Heitor Pereira",
+    "name": "Hector Pereira",
     "company": "Digital Solutions",
-    "email": "heitor.pereira@digitalsolutions.com",
+    "email": "hector.pereira@digitalsolutions.com",
     "source": "Website",
     "score": 84,
     "status": "Qualified"
@@ -433,9 +433,9 @@
   },
   {
     "id": 49,
-    "name": "Davi Lucca Santos",
+    "name": "David Santos",
     "company": "Tech Innovations",
-    "email": "davilucca.santos@techinnovations.com",
+    "email": "david.santos@techinnovations.com",
     "source": "Cold Call",
     "score": 66,
     "status": "Prospect"
@@ -451,27 +451,27 @@
   },
   {
     "id": 51,
-    "name": "João Miguel Costa",
+    "name": "John Michael Costa",
     "company": "Innovation Solutions",
-    "email": "joaomiguel.costa@innovationsolutions.com",
+    "email": "johnmichael.costa@innovationsolutions.com",
     "source": "LinkedIn",
     "score": 94,
     "status": "Hot Lead"
   },
   {
     "id": 52,
-    "name": "Ana Luiza Silva",
+    "name": "Anna Louise Silva",
     "company": "Tech Creations",
-    "email": "analuiza.silva@techcreations.com",
+    "email": "annalouise.silva@techcreations.com",
     "source": "Referral",
     "score": 77,
     "status": "Qualified"
   },
   {
     "id": 53,
-    "name": "Pedro Henrique Ferreira",
+    "name": "Peter Henry Ferreira",
     "company": "Startup Dynamics",
-    "email": "pedrohenrique.ferreira@startupdynamics.com",
+    "email": "peterhenry.ferreira@startupdynamics.com",
     "source": "Website",
     "score": 73,
     "status": "Qualified"
@@ -496,9 +496,9 @@
   },
   {
     "id": 56,
-    "name": "Beatriz Lima",
+    "name": "Beatrice Lima",
     "company": "Innovation Hub",
-    "email": "beatriz.lima@innovationhub.com",
+    "email": "beatrice.lima@innovationhub.com",
     "source": "Website",
     "score": 85,
     "status": "Qualified"
@@ -514,7 +514,7 @@
   },
   {
     "id": 58,
-    "name": "Júlia Martins",
+    "name": "Julia Martins",
     "company": "Tech Dynamics",
     "email": "julia.martins@techdynamics.com",
     "source": "Cold Call",
@@ -523,9 +523,9 @@
   },
   {
     "id": 59,
-    "name": "Rafael Pereira",
+    "name": "Raphael Pereira",
     "company": "Startup Creations",
-    "email": "rafael.pereira@startupcreations.com",
+    "email": "raphael.pereira@startupcreations.com",
     "source": "Website",
     "score": 87,
     "status": "Qualified"
@@ -577,9 +577,9 @@
   },
   {
     "id": 65,
-    "name": "Felipe Ferreira",
+    "name": "Philip Ferreira",
     "company": "Tech Hub",
-    "email": "felipe.ferreira@techhub.com",
+    "email": "philip.ferreira@techhub.com",
     "source": "Website",
     "score": 83,
     "status": "Qualified"
@@ -595,9 +595,9 @@
   },
   {
     "id": 67,
-    "name": "Carlos Almeida",
+    "name": "Charles Almeida",
     "company": "Digital Dynamics",
-    "email": "carlos.almeida@digitaldynamics.com",
+    "email": "charles.almeida@digitaldynamics.com",
     "source": "Cold Call",
     "score": 69,
     "status": "Prospect"
@@ -613,27 +613,27 @@
   },
   {
     "id": 69,
-    "name": "Roberto Souza",
+    "name": "Robert Souza",
     "company": "Startup Hub",
-    "email": "roberto.souza@startuphub.com",
+    "email": "robert.souza@startuphub.com",
     "source": "LinkedIn",
     "score": 90,
     "status": "Qualified"
   },
   {
     "id": 70,
-    "name": "Lucia Martins",
+    "name": "Lucy Martins",
     "company": "Innovation Hub",
-    "email": "lucia.martins@innovationhub.com",
+    "email": "lucy.martins@innovationhub.com",
     "source": "Referral",
     "score": 81,
     "status": "Qualified"
   },
   {
     "id": 71,
-    "name": "Ricardo Pereira",
+    "name": "Richard Pereira",
     "company": "Digital Solutions",
-    "email": "ricardo.pereira@digitalsolutions.com",
+    "email": "richard.pereira@digitalsolutions.com",
     "source": "Website",
     "score": 76,
     "status": "Qualified"
@@ -667,9 +667,9 @@
   },
   {
     "id": 75,
-    "name": "Andre Costa",
+    "name": "Andrew Costa",
     "company": "Digital Hub",
-    "email": "andre.costa@digitalhub.com",
+    "email": "andrew.costa@digitalhub.com",
     "source": "Referral",
     "score": 79,
     "status": "Qualified"
@@ -712,9 +712,9 @@
   },
   {
     "id": 80,
-    "name": "Isabela Lima",
+    "name": "Isabella Lima",
     "company": "Tech Hub",
-    "email": "isabela.lima@techhub.com",
+    "email": "isabella.lima@techhub.com",
     "source": "Website",
     "score": 77,
     "status": "Qualified"
@@ -739,18 +739,18 @@
   },
   {
     "id": 83,
-    "name": "Rafael Pereira",
+    "name": "Raphael Pereira",
     "company": "Tech Creations",
-    "email": "rafael.pereira@techcreations.com",
+    "email": "raphael.pereira@techcreations.com",
     "source": "Website",
     "score": 85,
     "status": "Qualified"
   },
   {
     "id": 84,
-    "name": "Beatriz Rocha",
+    "name": "Beatrice Rocha",
     "company": "Innovation Center",
-    "email": "beatriz.rocha@innovationcenter.com",
+    "email": "beatrice.rocha@innovationcenter.com",
     "source": "Referral",
     "score": 80,
     "status": "Qualified"
@@ -793,9 +793,9 @@
   },
   {
     "id": 89,
-    "name": "Felipe Ferreira",
+    "name": "Philip Ferreira",
     "company": "Digital Creations",
-    "email": "felipe.ferreira@digitalcreations.com",
+    "email": "philip.ferreira@digitalcreations.com",
     "source": "Website",
     "score": 74,
     "status": "Qualified"
@@ -829,9 +829,9 @@
   },
   {
     "id": 93,
-    "name": "Matheus Souza",
+    "name": "Matthew Souza",
     "company": "Innovation Hub",
-    "email": "matheus.souza@innovationhub.com",
+    "email": "matthew.souza@innovationhub.com",
     "source": "Referral",
     "score": 81,
     "status": "Qualified"
@@ -865,9 +865,9 @@
   },
   {
     "id": 97,
-    "name": "Vinicius Santos",
+    "name": "Vincent Santos",
     "company": "Innovation Center",
-    "email": "vinicius.santos@innovationcenter.com",
+    "email": "vincent.santos@innovationcenter.com",
     "source": "Referral",
     "score": 79,
     "status": "Qualified"

@@ -32,15 +32,30 @@ export const Toast = ({
   const getTypeClasses = () => {
     switch (type) {
       case 'success':
-        return 'text-green-800 bg-green-50 border-green-200 dark:bg-green-800/20 dark:text-green-400 dark:border-green-800'
+        return 'text-white bg-green-600 border-green-700 shadow-green-200/20'
       case 'error':
-        return 'text-red-800 bg-red-50 border-red-200 dark:bg-red-800/20 dark:text-red-400 dark:border-red-800'
+        return 'text-white bg-red-600 border-red-700 shadow-red-200/20'
       case 'warning':
-        return 'text-yellow-800 bg-yellow-50 border-yellow-200 dark:bg-yellow-800/20 dark:text-yellow-400 dark:border-yellow-800'
+        return 'text-white bg-yellow-600 border-yellow-700 shadow-yellow-200/20'
       case 'info':
-        return 'text-blue-800 bg-blue-50 border-blue-200 dark:bg-blue-800/20 dark:text-blue-400 dark:border-blue-800'
+        return 'text-white bg-blue-600 border-blue-700 shadow-blue-200/20'
       default:
-        return 'text-green-800 bg-green-50 border-green-200 dark:bg-green-800/20 dark:text-green-400 dark:border-green-800'
+        return 'text-white bg-green-600 border-green-700 shadow-green-200/20'
+    }
+  }
+
+  const getIconClasses = () => {
+    switch (type) {
+      case 'success':
+        return 'text-green-100 bg-green-700/30'
+      case 'error':
+        return 'text-red-100 bg-red-700/30'
+      case 'warning':
+        return 'text-yellow-100 bg-yellow-700/30'
+      case 'info':
+        return 'text-blue-100 bg-blue-700/30'
+      default:
+        return 'text-green-100 bg-green-700/30'
     }
   }
 
@@ -101,19 +116,21 @@ export const Toast = ({
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 flex items-center w-full max-w-xs p-4 border rounded-lg shadow-lg ${getTypeClasses()} ${className}`}
+      className={`fixed top-4 right-4 z-50 flex items-center w-full max-w-sm p-4 border rounded-lg shadow-lg backdrop-blur-sm ${getTypeClasses()} ${className}`}
     >
-      <div className='inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200'>
+      <div
+        className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg ${getIconClasses()}`}
+      >
         {getIcon()}
       </div>
-      <div className='ms-3 text-sm font-normal'>{children}</div>
+      <div className='ms-3 text-sm font-medium flex-1'>{children}</div>
       <button
         type='button'
-        className='ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700'
+        className='ms-auto -mx-1.5 -my-1.5 text-white/80 hover:text-white rounded-lg focus:ring-2 focus:ring-white/20 p-1.5 hover:bg-white/10 inline-flex items-center justify-center h-8 w-8 transition-colors'
         onClick={onClose}
-        aria-label='Fechar'
+        aria-label='Close'
       >
-        <span className='sr-only'>Fechar</span>
+        <span className='sr-only'>Close</span>
         <svg
           className='w-3 h-3'
           aria-hidden='true'

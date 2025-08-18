@@ -10,7 +10,6 @@ export const TableSection = () => {
   const { selectedLead, selectedOpportunity, isDrawerOpen, handleCloseDrawer } =
     useHomeContext()
 
-  // Tabs para Leads e Opportunities
   const tabs = [
     {
       id: 'leads',
@@ -24,7 +23,6 @@ export const TableSection = () => {
     }
   ]
 
-  // Determinar qual item mostrar no drawer
   const selectedItem = selectedOpportunity || selectedLead
 
   return (
@@ -33,7 +31,6 @@ export const TableSection = () => {
         <Tabs tabs={tabs} defaultActiveTab='leads' />
       </Container>
 
-      {/* Drawer para detalhes do Lead ou Opportunity */}
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
         {selectedItem && <LeadDetails item={selectedItem} />}
       </Drawer>

@@ -5,10 +5,9 @@
 @theme {
   --color-primary: #a073fa;
   --color-secondary: #1f1d37;
-  /* --color-black: #080711; */
+  --color-black: #080711;
 }
 
-/* Transições suaves para mudança de tema */
 * {
   transition:
     background-color 0.2s ease-in-out,

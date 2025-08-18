@@ -14,17 +14,15 @@ export const ModalManager = ({ children }: ModalManagerProps) => {
     <>
       {children}
 
-      {/* Modal de conversão */}
       <ConvertLeadModal lead={leadToConvert} isOpen={isConvertModalOpen} />
 
-      {/* Toast de sucesso */}
       <Toast
         isVisible={showToast}
         onClose={handleCloseToast}
         type='success'
         duration={5000}
       >
-        Lead convertido em oportunidade com sucesso!
+        Lead successfully converted to opportunity!
       </Toast>
     </>
   )

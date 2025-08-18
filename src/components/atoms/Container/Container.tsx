@@ -10,7 +10,7 @@ export const Container = ({
   className
 }: PropsWithChildren<IContainer>) => (
   <Col
-    className={`w-full gap-6 h-min p-6 bg-secondary rounded-lg ${className}`}
+    className={`w-full gap-4 sm:gap-6 h-min p-4 sm:p-6 bg-secondary rounded-lg ${className}`}
   >
     {children}
   </Col>

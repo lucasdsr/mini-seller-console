@@ -19,13 +19,11 @@ const defaultFilters: FilterState = {
 }
 
 export const useFiltersWithStorage = () => {
-  // Carregar filtros do localStorage ou usar valores padrão
   const [filters, setFilters] = useState<FilterState>(() => {
     const storedFilters = getFromLocalStorage<FilterState>(FILTERS_STORAGE_KEY)
     return storedFilters || defaultFilters
   })
 
-  // Salvar filtros no localStorage sempre que mudarem
   useEffect(() => {
     saveToLocalStorage(FILTERS_STORAGE_KEY, filters)
   }, [filters])

@@ -10,7 +10,9 @@ export const LeadsTab = () => {
 
   return (
     <div>
-      <h2 className='text-xl font-bold text-white mb-4'>Leads</h2>
+      <h2 className='text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4'>
+        Leads
+      </h2>
       {itemsWithActions.length > 0 ? (
         <Table<Lead>
           columns={columns}
