@@ -1,126 +1,196 @@
-# Atomic To-Do List Application
+# Mini Seller Console
 
-This project is an interactive to-do list application built with React, TypeScript, and Material-UI, following the principles of **Atomic Design**. It provides a clean, responsive interface for managing your daily tasks, allowing you to add, complete, edit, and remove them.
+A modern, responsive sales management dashboard built with React and TypeScript, designed to help sales teams efficiently manage leads and opportunities. The application follows Atomic Design principles and implements a clean, scalable architecture with React Context API for state management.
+
+## 🚀 Features
+
+- **Lead Management**: View, filter, and manage sales leads with comprehensive details
+- **Opportunity Tracking**: Convert leads to opportunities and track conversion progress
+- **Advanced Filtering**: Search, filter by status, and sort leads/opportunities
+- **Responsive Design**: Modern UI that works seamlessly across all devices
+- **Real-time Updates**: Instant feedback and state management
+- **Data Persistence**: Local storage integration for data persistence
+- **Virtual Scrolling**: Efficient rendering of large datasets using react-window
+
+## 🏗️ Architecture
+
+The project follows a well-structured, scalable architecture:
+
+### Component Organization (Atomic Design)
+
+- **Atoms**: Basic UI components (Button, Input, Loading, Badge, etc.)
+- **Molecules**: Composite components (Table, Modal, Dropdown, etc.)
+- **Organisms**: Complex UI sections (Drawer, TableSection, etc.)
+- **Templates**: Layout components (MainLayout)
+- **Pages**: Main application views (Home)
+
+### State Management
+
+- **React Context API**: Centralized state management for business logic
+- **Custom Hooks**: Reusable logic separated from UI components
+- **Context Separation**: Business logic centralized in dedicated context files
+- **Minimal Prop Drilling**: Components access context directly for cleaner code
+
+### Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── contexts/           # State management and business logic
+├── pages/             # Application views
+├── utils/             # Helper functions and utilities
+└── mocks/             # Sample data for development
+```
+
+## 🛠️ Technologies
+
+- **Frontend Framework**: React 18.3.1 with TypeScript 5.8.3
+- **Build Tool**: Vite 7.0.0
+- **Styling**: Tailwind CSS 4.1.12 with PostCSS
+- **State Management**: React Context API
+- **Testing**: Vitest 3.2.4 + React Testing Library
+- **Code Quality**: ESLint 9.30.1 + Prettier 3.6.2
+- **Performance**: React Window for virtual scrolling
+- **UI Components**: Custom component library with Flowbite integration
+
+## 📋 Prerequisites
+
+- **Node.js**: Version 22.12.0 (as specified in package.json)
+- **Package Manager**: Yarn (recommended)
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repository-url>
+cd mini-seller-console
+```
+
+### 2. Install Dependencies
+
+```bash
+yarn install
+```
+
+### 3. Start Development Server
+
+```bash
+yarn dev
+```
+
+The application will open at `http://localhost:5173` with hot reload enabled.
+
+### 4. Build for Production
+
+```bash
+yarn build
+```
+
+### 5. Run Tests
+
+```bash
+yarn test
+```
+
+### 6. Lint Code
+
+```bash
+yarn lint
+```
+
+## 🔧 Development
+
+### Project Scripts
+
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn test` - Run test suite
+- `yarn lint` - Check code quality
+- `yarn preview` - Preview production build
+
+### Key Components
+
+#### TableSection
+
+- **LeadsTab**: Displays and manages sales leads
+- **OpportunitiesTab**: Shows converted opportunities
+- **Virtual Scrolling**: Efficient rendering of large datasets
+- **Row Actions**: Click to view details, convert leads
+
+#### Filters
+
+- **Search**: Text-based filtering across all fields
+- **Status Filter**: Filter by lead/opportunity status
+- **Sorting**: Ascending/descending order by various fields
+
+#### Context System
+
+- **HomeContext**: Main application state and business logic
+- **Lead Management**: CRUD operations for leads
+- **Opportunity Conversion**: Lead-to-opportunity workflow
+- **Filter State**: Centralized filtering and search logic
+
+## 🎯 Business Logic
+
+### Lead Management
+
+- View lead details (name, company, email, source, score, status)
+- Filter leads by various criteria
+- Convert qualified leads to opportunities
+- Update lead information in real-time
+
+### Opportunity Tracking
+
+- Track converted leads as opportunities
+- Monitor conversion progress
+- Maintain conversion history and timestamps
+
+### Data Flow
+
+1. **Initial Load**: Simulated delay with loading state
+2. **Data Fetching**: Mock data integration (easily replaceable with real APIs)
+3. **State Updates**: Real-time updates through React Context
+4. **Persistence**: Local storage integration for data retention
+
+## 🧪 Testing
+
+The project includes comprehensive testing setup:
+
+- **Unit Tests**: Component and utility function testing
+- **Integration Tests**: Context and hook testing
+- **Test Utilities**: Custom testing helpers and mocks
+
+## 📱 Responsive Design
+
+Built with mobile-first approach using Tailwind CSS:
+
+- Responsive grid layouts
+- Adaptive component sizing
+- Touch-friendly interactions
+- Cross-device compatibility
+
+## 🔮 Future Enhancements
+
+- API integration for real data
+- Advanced analytics and reporting
+- User authentication and roles
+- Real-time collaboration features
+- Export functionality (CSV, PDF)
+- Advanced filtering and search
+
+## 🤝 Contributing
+
+1. Follow the existing code structure and patterns
+2. Use TypeScript for all new code
+3. Maintain component reusability
+4. Write tests for new features
+5. Follow the established naming conventions
+
+## 📄 License
+
+This project is private and proprietary.
 
 ---
 
-## Objective
-
-The main objective of this project was to create a robust and maintainable to-do list application by rigorously applying the Atomic Design methodology. This approach emphasizes breaking down the UI into smaller, reusable components, leading to a highly organized and scalable codebase. **TypeScript** was chosen to enhance type safety and improve code structure and maintainability.
-
----
-
-## Features
-
-* **Add New Tasks**: Easily add new tasks to your list.
-* **Mark as Completed**: Checkboxes allow you to mark tasks as completed.
-* **Edit Task Names**: Update task titles directly within the list.
-* **Remove Completed Tasks**: Clear all completed tasks with a dedicated button.
-* **Persistent Storage**: Tasks are saved in your browser's local storage, so they remain even after refreshing the page.
-* **Responsive Design**: The application is designed to be visually appealing and functional across various screen sizes.
-* **Animations & Transitions**: Subtle animations enhance the user experience.
-* **Atomic Design Structure**: Project organized into Atoms, Molecules, Organisms, Templates, and Pages for clarity and reusability.
-* **TypeScript**: Full type safety implemented for task objects, component props, and application logic.
-* **Linting & Formatting**: ESLint and Prettier are configured to ensure consistent code quality and style.
-* **Unit Tests**: Comprehensive unit tests using Vitest and React Testing Library ensure the reliability of key functionalities.
-
----
-
-## Atomic Design Implementation
-
-The project strictly adheres to Atomic Design principles to organize the UI components and project structure:
-
-* **Atoms**: Basic HTML elements or React components that can't be broken down further without losing their meaning.
-    * Examples: `Input` (for task title/description), `Button` (e.g., "Add task", "Clear all"), `Checkbox`.
-* **Molecules**: Groups of atoms assembled together to form a relatively simple, reusable UI component.
-    * Example: `TaskItem` (combining an Input, Checkbox, and Delete Button).
-* **Organisms**: Composed of molecules and/or atoms, forming distinct sections of an interface. They are more complex and provide context.
-    * Examples: `UncompletedTasksList` (list of `TaskItem`s), `CompletedTasksList` (collapsible list of completed `TaskItem`s), `TaskList` (the main container for both lists and controls).
-* **Templates**: Page-level objects that place organisms into a layout. They focus on the content structure rather than actual content.
-    * While not explicitly separated as a distinct folder in this smaller application, the `TaskList` component acts as a template for the main application view.
-* **Pages**: Instances of templates with real content plugged in.
-    * The main application view where `TaskList` is rendered.
-
-This structured approach ensures modularity, reusability, and easier maintenance of the codebase.
-
----
-
-## Technologies Used
-
-The project leverages a modern web development stack:
-
-* **React** (v18.3.1): A JavaScript library for building user interfaces.
-* **TypeScript** (v5.8.3): A superset of JavaScript that adds static types.
-* **Material-UI** (`@mui/material` v7.0.2): A popular React UI framework for pre-built, high-quality components.
-* **Emotion** (`@emotion/react`, `@emotion/styled`): CSS-in-JS library used by Material-UI for styling.
-* **Vite** (v7.0.0): A fast build tool that significantly improves the development experience.
-* **Vitest** (v3.2.4): A blazing fast unit test framework powered by Vite.
-* **React Testing Library** (`@testing-library/react`): Utilities for testing React components in a user-centric way.
-* **ESLint** (v9.30.1): For identifying and reporting on patterns found in ECMAScript/JavaScript code.
-* **Prettier** (v3.6.2): An opinionated code formatter.
-
----
-
-## Getting Started
-
-Follow these steps to set up and run the project locally.
-
-### Prerequisites
-
-* Node.js (v18.x or higher recommended)
-* npm or Yarn (yarn is used in this guide)
-
-### Installation
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone [https://github.com/your-username/atomic-to-do-list.git](https://github.com/your-username/atomic-to-do-list.git)
-    cd atomic-to-do-list
-    ```
-
-2.  **Install dependencies:**
-
-    ```bash
-    yarn install
-    ```
-
-### Running the Project
-
-1.  **Start the development server:**
-
-    ```bash
-    yarn dev
-    ```
-
-    This will open the application in your browser, typically at `http://localhost:5173`. The application will automatically reload as you make changes to the source code.
-
-### Running Tests
-
-1.  **Run unit tests:**
-
-    ```bash
-    yarn test
-    ```
-
-    This command will execute all unit tests using Vitest.
-
-### Building for Production
-
-1.  **Build the project:**
-
-    ```bash
-    yarn build
-    ```
-
-    This command compiles the TypeScript code and bundles the application for production, outputting the files to the `dist/` directory.
-
-### Linting
-
-1.  **Run ESLint:**
-
-    ```bash
-    yarn lint
-    ```
-
-    This command will run ESLint to check for code style issues and potential errors.
+Built with ❤️ using modern web technologies and best practices.
