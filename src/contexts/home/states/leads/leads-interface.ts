@@ -16,4 +16,5 @@ export interface UseLeadState {
   leadsList: LeadsList
   convertedLeads: LeadsList
   removeLead: (leadId: number) => void
+  updateLead: (leadId: number, updates: Partial<Lead>) => void
 }

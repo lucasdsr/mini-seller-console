@@ -40,6 +40,16 @@ export const useLeadState = (): UseLeadState => {
     })
   }
 
+  const updateLead = (leadId: number, updates: Partial<LeadsList[0]>) => {
+    setAllLeads(curr => {
+      const updatedList = curr.map(lead =>
+        lead.id === leadId ? { ...lead, ...updates } : lead
+      )
+      saveToLocalStorage(LOCAL_STORAGE_LISTS_KEY, updatedList)
+      return updatedList
+    })
+  }
+
   useEffect(() => {
     saveToLocalStorage(LOCAL_STORAGE_LISTS_KEY, allLeads)
   }, [allLeads])
@@ -47,6 +57,7 @@ export const useLeadState = (): UseLeadState => {
   return {
     leadsList,
     convertedLeads,
-    removeLead
+    removeLead,
+    updateLead
   }
 }

@@ -11,7 +11,7 @@ import {
 import { HomeContextData } from '../interface'
 
 export const useHomeState = (): HomeContextData => {
-  const { leadsList, removeLead } = useLeadsState()
+  const { leadsList, removeLead, updateLead } = useLeadsState()
   const { opportunitiesList, addOpportunity } = useOpportunitiesState()
 
   const { filters, updateFilters, resetFilters } = useFiltersWithStorage()
@@ -109,6 +109,15 @@ export const useHomeState = (): HomeContextData => {
     setShowToast(false)
   }
 
+  const handleUpdateLead = (leadId: number, updates: Partial<Lead>) => {
+    updateLead(leadId, updates)
+
+    // Update selected lead if it's the one being edited
+    if (selectedLead && selectedLead.id === leadId) {
+      setSelectedLead({ ...selectedLead, ...updates })
+    }
+  }
+
   return {
     columns,
     filteredLeads,
@@ -131,6 +140,7 @@ export const useHomeState = (): HomeContextData => {
     handleConfirmConversion,
     handleCloseConvertModal,
     handleCloseToast,
+    handleUpdateLead,
     resetFilters
   }
 }

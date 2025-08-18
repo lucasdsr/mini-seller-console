@@ -1,14 +1,18 @@
 import { Lead, LeadStatus, LEAD_STATUS_COLORS, Opportunity } from '@/contexts'
 import { Button } from '@/components/atoms/Button'
 import { Badge } from '@/components/atoms/Badge'
-import { useHomeContext } from '@/contexts/home'
+import { useHomeContext, useValidation } from '@/contexts'
+import { useState } from 'react'
+import { EditableField } from './EditableField'
 
 interface ItemDetailsProps {
   item: Lead | Opportunity
 }
 
 export const LeadDetails = ({ item }: ItemDetailsProps) => {
-  const { handleConvertLead, opportunitiesList } = useHomeContext()
+  const { handleConvertLead, opportunitiesList, handleUpdateLead } =
+    useHomeContext()
+  const { validateEmail } = useValidation()
 
   const isOpportunity = 'convertedAt' in item
   const opportunity = isOpportunity ? (item as Opportunity) : null
@@ -17,6 +21,9 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
   const isConverted = lead
     ? opportunitiesList.some(opp => opp.id === lead.id)
     : false
+
+  // State for editing fields
+  const [editingField, setEditingField] = useState<string | null>(null)
 
   const getStatusDisplay = (status: LeadStatus) => {
     const statusColors =
@@ -54,6 +61,33 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
       handleConvertLead(lead)
     }
   }
+
+  const handleEditField = (fieldName: string) => {
+    setEditingField(fieldName)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingField(null)
+  }
+
+  const handleSaveEmail = (email: string) => {
+    if (lead) {
+      handleUpdateLead(lead.id, { email })
+    }
+    setEditingField(null)
+  }
+
+  const handleSaveStatus = (status: string) => {
+    if (lead) {
+      handleUpdateLead(lead.id, { status: status as LeadStatus })
+    }
+    setEditingField(null)
+  }
+
+  const statusOptions = Object.values(LeadStatus).map(status => ({
+    value: status,
+    label: status
+  }))
 
   return (
     <div className='p-4 sm:p-6'>
@@ -106,14 +140,27 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
             Contact
           </h3>
           <div className='grid grid-cols-1 gap-3 sm:gap-4'>
-            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
-              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
-                Email:
-              </span>
-              <span className='text-gray-900 dark:text-white break-all text-sm sm:text-base'>
-                {item.email}
-              </span>
-            </div>
+            {lead && !isOpportunity ? (
+              <EditableField
+                label='Email'
+                value={item.email}
+                isEditing={editingField === 'email'}
+                onEdit={() => handleEditField('email')}
+                onCancel={handleCancelEdit}
+                onSave={handleSaveEmail}
+                validation={validateEmail}
+                inputType='text'
+              />
+            ) : (
+              <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+                <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                  Email:
+                </span>
+                <span className='text-gray-900 dark:text-white break-all text-sm sm:text-base'>
+                  {item.email}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -134,18 +181,31 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
               <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
                 Score:
               </span>
-              <span className='text-sm sm:text-base'>
-                {getScoreDisplay(item.score)}
-              </span>
-            </div>
-            <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
-              <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
-                Status:
-              </span>
               <div className='text-sm sm:text-base'>
-                {getStatusDisplay(item.status)}
+                {getScoreDisplay(item.score)}
               </div>
             </div>
+            {lead && !isOpportunity ? (
+              <EditableField
+                label='Status'
+                value={item.status}
+                isEditing={editingField === 'status'}
+                onEdit={() => handleEditField('status')}
+                onCancel={handleCancelEdit}
+                onSave={handleSaveStatus}
+                inputType='select'
+                options={statusOptions}
+              />
+            ) : (
+              <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
+                <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>
+                  Status:
+                </span>
+                <div className='text-sm sm:text-base'>
+                  {getStatusDisplay(item.status)}
+                </div>
+              </div>
+            )}
             {opportunity && (
               <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 space-y-1 sm:space-y-0'>
                 <span className='font-medium text-gray-700 dark:text-gray-300 text-sm sm:text-base'>

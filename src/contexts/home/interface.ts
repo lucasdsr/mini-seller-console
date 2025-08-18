@@ -31,4 +31,5 @@ export interface HomeContextData {
   handleConfirmConversion: () => void
   handleCloseConvertModal: () => void
   handleCloseToast: () => void
+  handleUpdateLead: (leadId: number, updates: Partial<Lead>) => void
 }
