@@ -155,11 +155,90 @@ yarn lint
 
 ## 🧪 Testing
 
-The project includes comprehensive testing setup:
+The project includes comprehensive testing setup with extensive coverage of all major components:
 
-- **Unit Tests**: Component and utility function testing
-- **Integration Tests**: Context and hook testing
-- **Test Utilities**: Custom testing helpers and mocks
+### Test Coverage
+
+- **Component Testing**: All UI components are thoroughly tested using React Testing Library
+- **Unit Tests**: Individual component functionality and props validation
+- **Integration Tests**: Component interactions and context integration
+- **Accessibility Tests**: ARIA attributes and keyboard navigation
+- **Responsive Design Tests**: Mobile and desktop behavior validation
+
+### Tested Components
+
+#### Atoms (Basic UI Components)
+
+- **Button**: Variants, sizes, interactions, accessibility
+- **Loading**: Different sizes, fullScreen mode, styling
+- **Input**: Form handling, validation, edit modes
+- **Select**: Options rendering, value handling, styling
+
+#### Molecules (Composite Components)
+
+- **Modal**: Open/close states, keyboard events, accessibility, body scroll management
+- **Table**: Data rendering, row interactions, custom renderers, responsive behavior
+- **Tabs**: Tab switching, disabled states, content rendering, responsive design
+- **Dropdown**: Positioning, mouse events, portal rendering, item interactions
+
+#### Organisms (Complex UI Sections)
+
+- **Drawer**: Open/close states, overlay interactions, positioning, accessibility
+
+#### Templates & Pages
+
+- **MainLayout**: Children rendering, styling, responsive behavior
+- **LeadsTab**: Data rendering, loading states, empty states, context integration
+- **LeadActions**: Business logic, dropdown functionality, context usage
+- **EmptyTableState**: Icon rendering, text display, responsive styling
+
+### Testing Technologies
+
+- **Vitest**: Fast unit testing framework powered by Vite
+- **React Testing Library**: User-centric testing utilities
+- **Jest DOM**: Custom matchers for DOM testing
+- **Mocking**: Comprehensive mocking of contexts, hooks, and external dependencies
+
+### Test Structure
+
+```
+src/
+├── components/
+│   ├── atoms/
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   └── Button.test.tsx
+│   │   └── ...
+│   ├── molecules/
+│   │   ├── Modal/
+│   │   │   ├── Modal.tsx
+│   │   │   └── Modal.test.tsx
+│   │   └── ...
+│   └── ...
+└── pages/
+    └── Home/
+        └── TableSection/
+            └── components/
+                ├── LeadActions.tsx
+                ├── LeadActions.test.tsx
+                └── ...
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test --watch
+
+# Run tests with coverage
+yarn test --coverage
+
+# Run specific test file
+yarn test Button.test.tsx
+```
 
 ## 📱 Responsive Design
 
@@ -186,6 +265,46 @@ Built with mobile-first approach using Tailwind CSS:
 3. Maintain component reusability
 4. Write tests for new features
 5. Follow the established naming conventions
+
+### Testing Guidelines
+
+#### Writing Tests
+
+- **Coverage**: Aim for 90%+ test coverage on new components
+- **User Behavior**: Test from the user's perspective using React Testing Library
+- **Accessibility**: Include tests for ARIA attributes and keyboard navigation
+- **Responsive Design**: Test mobile and desktop behavior
+- **Edge Cases**: Test error states, loading states, and boundary conditions
+
+#### Test Structure
+
+- Use descriptive test names that explain the expected behavior
+- Group related tests using `describe` blocks
+- Test one specific behavior per test case
+- Use proper setup and teardown with `beforeEach` and `afterEach`
+- Mock external dependencies and contexts appropriately
+
+#### Test Examples
+
+```typescript
+describe('Button Component', () => {
+  it('should render with primary variant by default', () => {
+    render(<Button>Click me</Button>)
+    const button = screen.getByRole('button')
+    expect(button).toHaveClass('bg-blue-600', 'text-white')
+  })
+
+  it('should handle click events', () => {
+    const handleClick = vi.fn()
+    render(<Button onClick={handleClick}>Clickable Button</Button>)
+
+    const button = screen.getByRole('button')
+    fireEvent.click(button)
+
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
+})
+```
 
 ## 📄 License
 

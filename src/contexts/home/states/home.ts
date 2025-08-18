@@ -58,7 +58,7 @@ export const useHomeState = (): HomeContextData => {
     sortOrder: 'asc' | 'desc' | null
   ) => {
     setIsFiltering(true)
-    await simulateDelay(1000) // 1 segundo de delay
+    await simulateDelay(1000)
     updateFilters({ search, status, sortOrder })
     setIsFiltering(false)
   }
@@ -89,7 +89,7 @@ export const useHomeState = (): HomeContextData => {
   const handleConfirmConversion = async () => {
     if (leadToConvert) {
       setIsFiltering(true)
-      await simulateDelay(1000) // 1 segundo de delay para conversão
+      await simulateDelay(1000)
 
       const opportunity: Opportunity = {
         ...leadToConvert,
@@ -121,11 +121,10 @@ export const useHomeState = (): HomeContextData => {
 
   const handleUpdateLead = async (leadId: number, updates: Partial<Lead>) => {
     setIsFiltering(true)
-    await simulateDelay(800) // 800ms de delay para edição
+    await simulateDelay(800)
 
     updateLead(leadId, updates)
 
-    // Update selected lead if it's the one being edited
     if (selectedLead && selectedLead.id === leadId) {
       setSelectedLead({ ...selectedLead, ...updates })
     }

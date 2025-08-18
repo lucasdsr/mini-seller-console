@@ -22,7 +22,6 @@ export const LeadDetails = ({ item }: ItemDetailsProps) => {
     ? opportunitiesList.some(opp => opp.id === lead.id)
     : false
 
-  // State for editing fields
   const [editingField, setEditingField] = useState<string | null>(null)
 
   const getStatusDisplay = (status: LeadStatus) => {
